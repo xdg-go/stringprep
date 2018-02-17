@@ -22,8 +22,6 @@ my @output = <<"HERE";
 
 package stringprep
 
-import "sort"
-
 var table$table = Table{
 HERE
 
@@ -49,20 +47,11 @@ for my $line ( $path->lines( { chomp => 1 } ) ) {
     }
 }
 
-push @output, <<"here";
+push @output, <<"HERE";
 }
 
 // Table$table represents RFC-3454 Table $base.
 var Table$table Table = table$table
-
-// Is$table returns true if a rune is in stringprep table $base.
-func Is$table(r rune) bool {
-    i := sort.Search( len(table$table), func(i int) bool { return table$table\[i].Contains(r) || table$table\[i][0] >= r })
-    if i < len(table$table) && table$table\[i].Contains(r) {
-        return true
-    }
-    return false
-}
-here
+HERE
 
 path(lc("$table.go"))->spew(@output);

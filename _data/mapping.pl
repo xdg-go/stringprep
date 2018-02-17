@@ -22,7 +22,7 @@ my @output = <<"HERE";
 
 package stringprep
 
-var table$table = Map{
+var table$table = Mapping{
 HERE
 
 for my $line ( $path->lines( { chomp => 1 } ) ) {
@@ -38,17 +38,7 @@ push @output, <<"HERE";
 }
 
 // Table$table represents RFC-3454 Table $base.
-var Table$table Map = table$table
-
-// Map$table maps a rune to a (possibly empty) rune slice via stringprep
-// table $base.  The ok return value is false if the rune was not found.
-func Map$table(r rune) (replacement []rune, ok bool) {
-    rs, ok := table$table\[r]
-    if !ok {
-        return nil, false
-    }
-    return rs, true
-}
+var Table$table Mapping = table$table
 HERE
 
 path( lc("$table.go") )->spew(@output);
