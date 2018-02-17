@@ -29,9 +29,9 @@ type Set []RuneRange
 
 // Contains returns true if a rune is within any of the RuneRanges in the
 // Set.
-func (t Set) Contains(r rune) bool {
-	i := sort.Search(len(t), func(i int) bool { return t[i].Contains(r) || t[i].isAbove(r) })
-	if i < len(t) && t[i].Contains(r) {
+func (s Set) Contains(r rune) bool {
+	i := sort.Search(len(s), func(i int) bool { return s[i].Contains(r) || s[i].isAbove(r) })
+	if i < len(s) && s[i].Contains(r) {
 		return true
 	}
 	return false
