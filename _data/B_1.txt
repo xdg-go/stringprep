@@ -1,6 +1,5 @@
 00AD; ; Map to nothing
 034F; ; Map to nothing
-1806; ; Map to nothing
 180B; ; Map to nothing
 180C; ; Map to nothing
 180D; ; Map to nothing
