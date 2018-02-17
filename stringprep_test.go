@@ -8,7 +8,7 @@ import (
 
 type rangeCase struct {
 	label string
-	table Table
+	table Set
 	in    rune
 	out   bool
 }

@@ -6,11 +6,11 @@
 
 package stringprep
 
-var tableC3 = Table{
+var tableC3 = Set{
 	RuneRange{0xE000, 0xF8FF},     // [PRIVATE USE, PLANE 0]
 	RuneRange{0xF0000, 0xFFFFD},   // [PRIVATE USE, PLANE 15]
 	RuneRange{0x100000, 0x10FFFD}, // [PRIVATE USE, PLANE 16]
 }
 
 // TableC3 represents RFC-3454 Table C.3.
-var TableC3 Table = tableC3
+var TableC3 Set = tableC3

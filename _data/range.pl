@@ -22,7 +22,7 @@ my @output = <<"HERE";
 
 package stringprep
 
-var table$table = Table{
+var table$table = Set{
 HERE
 
 for my $line ( $path->lines( { chomp => 1 } ) ) {
@@ -51,7 +51,7 @@ push @output, <<"HERE";
 }
 
 // Table$table represents RFC-3454 Table $base.
-var Table$table Table = table$table
+var Table$table Set = table$table
 HERE
 
 path(lc("$table.go"))->spew(@output);

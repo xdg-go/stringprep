@@ -6,9 +6,9 @@
 
 package stringprep
 
-var tableC1_1 = Table{
+var tableC1_1 = Set{
 	RuneRange{0x0020, 0x0020}, // SPACE
 }
 
 // TableC1_1 represents RFC-3454 Table C.1.1.
-var TableC1_1 Table = tableC1_1
+var TableC1_1 Set = tableC1_1

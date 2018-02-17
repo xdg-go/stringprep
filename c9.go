@@ -6,10 +6,10 @@
 
 package stringprep
 
-var tableC9 = Table{
+var tableC9 = Set{
 	RuneRange{0xE0001, 0xE0001}, // LANGUAGE TAG
 	RuneRange{0xE0020, 0xE007F}, // [TAGGING CHARACTERS]
 }
 
 // TableC9 represents RFC-3454 Table C.9.
-var TableC9 Table = tableC9
+var TableC9 Set = tableC9

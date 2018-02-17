@@ -6,10 +6,10 @@
 
 package stringprep
 
-var tableC2_1 = Table{
+var tableC2_1 = Set{
 	RuneRange{0x0000, 0x001F}, // [CONTROL CHARACTERS]
 	RuneRange{0x007F, 0x007F}, // DELETE
 }
 
 // TableC2_1 represents RFC-3454 Table C.2.1.
-var TableC2_1 Table = tableC2_1
+var TableC2_1 Set = tableC2_1

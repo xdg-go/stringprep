@@ -6,7 +6,7 @@
 
 package stringprep
 
-var tableC8 = Table{
+var tableC8 = Set{
 	RuneRange{0x0340, 0x0340}, // COMBINING GRAVE TONE MARK
 	RuneRange{0x0341, 0x0341}, // COMBINING ACUTE TONE MARK
 	RuneRange{0x200E, 0x200E}, // LEFT-TO-RIGHT MARK
@@ -25,4 +25,4 @@ var tableC8 = Table{
 }
 
 // TableC8 represents RFC-3454 Table C.8.
-var TableC8 Table = tableC8
+var TableC8 Set = tableC8

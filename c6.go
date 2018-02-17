@@ -6,7 +6,7 @@
 
 package stringprep
 
-var tableC6 = Table{
+var tableC6 = Set{
 	RuneRange{0xFFF9, 0xFFF9}, // INTERLINEAR ANNOTATION ANCHOR
 	RuneRange{0xFFFA, 0xFFFA}, // INTERLINEAR ANNOTATION SEPARATOR
 	RuneRange{0xFFFB, 0xFFFB}, // INTERLINEAR ANNOTATION TERMINATOR
@@ -15,4 +15,4 @@ var tableC6 = Table{
 }
 
 // TableC6 represents RFC-3454 Table C.6.
-var TableC6 Table = tableC6
+var TableC6 Set = tableC6

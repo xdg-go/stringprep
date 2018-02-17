@@ -6,7 +6,7 @@
 
 package stringprep
 
-var tableC2_2 = Table{
+var tableC2_2 = Set{
 	RuneRange{0x0080, 0x009F},   // [CONTROL CHARACTERS]
 	RuneRange{0x06DD, 0x06DD},   // ARABIC END OF AYAH
 	RuneRange{0x070F, 0x070F},   // SYRIAC ABBREVIATION MARK
@@ -26,4 +26,4 @@ var tableC2_2 = Table{
 }
 
 // TableC2_2 represents RFC-3454 Table C.2.2.
-var TableC2_2 Table = tableC2_2
+var TableC2_2 Set = tableC2_2

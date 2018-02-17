@@ -6,9 +6,9 @@
 
 package stringprep
 
-var tableC5 = Table{
+var tableC5 = Set{
 	RuneRange{0xD800, 0xDFFF}, // [SURROGATE CODES]
 }
 
 // TableC5 represents RFC-3454 Table C.5.
-var TableC5 Table = tableC5
+var TableC5 Set = tableC5
