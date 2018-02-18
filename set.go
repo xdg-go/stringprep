@@ -67,18 +67,17 @@ func hasBiDiLCat(s string) bool {
 	return false
 }
 
-// Check first and last characters are in table D.1; let empty string
-// pass this rule
+// Check first and last characters are in table D.1; requires non-empty string
 func hasFirstAndLastRandALCat(s string) bool {
-	if len(s) == 0 {
-		return true
-	}
 	rs := []rune(s)
 	return TableD1.Contains(rs[0]) && TableD1.Contains(rs[len(rs)-1])
 }
 
-// Check that BiDi rules are satisfied
+// Check that BiDi rules are satisfied ; let empty string pass this rule
 func passesBiDiRules(s string) bool {
+	if len(s) == 0 {
+		return true
+	}
 	if hasBiDiProhibitedRune(s) {
 		return false
 	}
