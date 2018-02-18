@@ -36,17 +36,3 @@ func (s Set) Contains(r rune) bool {
 	}
 	return false
 }
-
-// Mapping represents a stringprep mapping, from a single rune to zero or more
-// runes.
-type Mapping map[rune][]rune
-
-// Map maps a rune to a (possibly empty) rune slice via a stringprep Mapping.
-// The ok return value is false if the rune was not found.
-func (m Mapping) Map(r rune) (replacement []rune, ok bool) {
-	rs, ok := m[r]
-	if !ok {
-		return nil, false
-	}
-	return rs, true
-}
