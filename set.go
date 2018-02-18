@@ -36,3 +36,59 @@ func (s Set) Contains(r rune) bool {
 	}
 	return false
 }
+
+// Check for prohibited characters from table C.8
+func hasBiDiProhibitedRune(s string) bool {
+	for _, r := range s {
+		if TableC8.Contains(r) {
+			return true
+		}
+	}
+	return false
+}
+
+// Check for RandALCat characters from table D.1
+func hasBiDiRandALCat(s string) bool {
+	for _, r := range s {
+		if TableD1.Contains(r) {
+			return true
+		}
+	}
+	return false
+}
+
+// Check for LCat characters from table D.2
+func hasBiDiLCat(s string) bool {
+	for _, r := range s {
+		if TableD2.Contains(r) {
+			return true
+		}
+	}
+	return false
+}
+
+// Check first and last characters are in table D.1; let empty string
+// pass this rule
+func hasFirstAndLastRandALCat(s string) bool {
+	if len(s) == 0 {
+		return true
+	}
+	rs := []rune(s)
+	return TableD1.Contains(rs[0]) && TableD1.Contains(rs[len(rs)-1])
+}
+
+// Check that BiDi rules are satisfied
+func passesBiDiRules(s string) bool {
+	if hasBiDiProhibitedRune(s) {
+		return false
+	}
+	if hasBiDiRandALCat(s) {
+		if hasBiDiLCat(s) {
+			return false
+		}
+		if !hasFirstAndLastRandALCat(s) {
+			return false
+		}
+	}
+	return true
+}
