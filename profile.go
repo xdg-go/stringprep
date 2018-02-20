@@ -1,16 +1,8 @@
 package stringprep
 
 import (
-	"fmt"
-
 	"golang.org/x/text/unicode/norm"
 )
-
-// ErrBiDi indicates invalid use of bidirectional characters.
-type ErrBiDi error
-
-// ErrProhibited indicates a prohibited character was found.
-type ErrProhibited error
 
 // Profile represents a stringprep profile.
 type Profile struct {
@@ -19,6 +11,8 @@ type Profile struct {
 	Prohibits []Set
 	CheckBiDi bool
 }
+
+var errProhibited = "prohibited character"
 
 // Prepare transforms an input string to an output string following
 // the rules defined in the profile as defined by RFC-3454.
@@ -47,14 +41,14 @@ func (p Profile) Prepare(s string) (string, error) {
 	// Check prohibited
 	for _, r := range out {
 		if p.runeIsProhibited(r) {
-			return "", ErrProhibited(fmt.Errorf("character '0x%04x' is prohibited", r))
+			return "", Error{Msg: errProhibited, Rune: r}
 		}
 	}
 
 	// Check BiDi allowed
 	if p.CheckBiDi {
-		if !passesBiDiRules(out) {
-			return "", ErrBiDi(fmt.Errorf("Invalid use of bidirectional characters"))
+		if err := passesBiDiRules(out); err != nil {
+			return "", err
 		}
 	}
 

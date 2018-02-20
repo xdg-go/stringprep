@@ -1,7 +1,6 @@
 package stringprep
 
 import (
-	"fmt"
 	"reflect"
 	"strconv"
 	"testing"
@@ -40,7 +39,7 @@ var profileTests = []profileCase{
 		profile: p1,
 		in:      "u\uFFFDer",
 		out:     "",
-		err:     ErrProhibited(fmt.Errorf("character '0x%04x' is prohibited", 0xFFFD)),
+		err:     Error{Msg: errProhibited, Rune: '\uFFFD'},
 	},
 	{
 		label:   "p1: bidi ok",
@@ -50,25 +49,32 @@ var profileTests = []profileCase{
 		err:     nil,
 	},
 	{
-		label:   "p1: bidi not ok; RandAL + L",
+		label:   "p1: bidi not ok RandAL with L",
 		profile: p1,
 		in:      "\u0627\u0589\u0628",
 		out:     "",
-		err:     ErrBiDi(fmt.Errorf("Invalid use of bidirectional characters")),
+		err:     Error{Msg: errHasLCat, Rune: '\u0589'},
 	},
 	{
-		label:   "p1: bidi not ok; endpoints",
+		label:   "p1: bidi bad first rune",
+		profile: p1,
+		in:      "\u0031\u0627",
+		out:     "",
+		err:     Error{Msg: errFirstRune, Rune: '\u0031'},
+	},
+	{
+		label:   "p1: bidi bad last rune",
 		profile: p1,
 		in:      "\u0627\u0031",
 		out:     "",
-		err:     ErrBiDi(fmt.Errorf("Invalid use of bidirectional characters")),
+		err:     Error{Msg: errLastRune, Rune: '\u0031'},
 	},
 	{
-		label:   "p1: bidi not ok; chars",
+		label:   "p1: bidi bad chars",
 		profile: p1,
 		in:      "\u206D",
 		out:     "",
-		err:     ErrBiDi(fmt.Errorf("Invalid use of bidirectional characters")),
+		err:     Error{Msg: errProhibited, Rune: '\u206D'},
 	},
 	{
 		label:   "p2: bidi not checked",

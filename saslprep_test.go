@@ -1,7 +1,6 @@
 package stringprep
 
 import (
-	"fmt"
 	"reflect"
 	"strconv"
 	"testing"
@@ -25,13 +24,13 @@ var saslTests = []saslCase{
 		label: "prohibited",
 		in:    "\u0007",
 		out:   "",
-		err:   ErrProhibited(fmt.Errorf("character '0x%04x' is prohibited", 0x0007)),
+		err:   Error{Msg: errProhibited, Rune: '\u0007'},
 	},
 	{
 		label: "bidi not ok",
 		in:    "\u0627\u0031",
 		out:   "",
-		err:   ErrBiDi(fmt.Errorf("Invalid use of bidirectional characters")),
+		err:   Error{Msg: errLastRune, Rune: '\u0031'},
 	},
 }
 
