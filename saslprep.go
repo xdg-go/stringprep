@@ -20,9 +20,11 @@ var mapNonASCIISpaceToASCIISpace = Mapping{
 	0x3000: []rune{0x0020},
 }
 
-// SASLprep is a stringprep profile for user names and
-// passwords as described in RFC-4013.
-var SASLprep Profile = Profile{
+// SASLprep is a pre-defined stringprep profile for user names and passwords
+// as described in RFC-4013.
+var SASLprep Profile = saslprep
+
+var saslprep = Profile{
 	Mappings: []Mapping{
 		TableB1,
 		mapNonASCIISpaceToASCIISpace,

@@ -1,36 +1,23 @@
 [![GoDoc](https://godoc.org/github.com/xdg/stringprep?status.svg)](https://godoc.org/github.com/xdg/stringprep)
 [![Build Status](https://travis-ci.org/xdg/stringprep.svg?branch=master)](https://travis-ci.org/xdg/stringprep)
 
-# stringprep – Go implementation of RFC-3454 stringprep
+# stringprep – Go implementation of RFC-3454 stringprep and RFC-4013 SASLprep
 
 ## Synopsis
 
 ```
-    myProfile := stringprep.Profile{
-	Mappings:  []stringprep.Mapping{
-            stringprep.TableB1,
-            stringprep.TableB2,
-        },
-	Normalize: true,
-	Prohibits: []Set{
-            stringprep.TableC1_1,
-            stringprep.TableC1_2,
-        },
-	CheckBiDi: true,
-    }
+    import "github.com/xdg/stringprep"
 
-    prepped := myProfile.Prepare(input)
+    prepped := stringprep.SASLprep.Prepare("TrustNô1")
 
 ```
 
 ## Description
 
 This library provides an implementation of the stringprep algorithm
-(RFC-3454), including all data tables, in Go.
+(RFC-3454) in Go, including all data tables.
 
-The repo includes a SASLprep (RFC-4013) profile built using the stringprep
-library. See [SASLprep docs](https://godoc.org/github.com/xdg/stringprep/saslprep)
-for usage information.
+A pre-built SASLprep (RFC-4013) profile is provided as well.
 
 ## Copyright and License
 
