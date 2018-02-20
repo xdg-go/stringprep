@@ -1,22 +1,20 @@
-package saslprep
+package stringprep
 
 import (
 	"fmt"
 	"reflect"
 	"strconv"
 	"testing"
-
-	"github.com/xdg/stringprep"
 )
 
-type profileCase struct {
+type saslCase struct {
 	label string
 	in    string
 	out   string
 	err   error
 }
 
-var profileTests = []profileCase{
+var saslTests = []saslCase{
 	{label: "soft hyphen", in: "I\u00ADX", out: "IX", err: nil},
 	{label: "non ASCII space", in: "I\u2000X", out: "I X", err: nil},
 	{label: "no transform", in: "user", out: "user", err: nil},
@@ -27,20 +25,20 @@ var profileTests = []profileCase{
 		label: "prohibited",
 		in:    "\u0007",
 		out:   "",
-		err:   stringprep.ErrProhibited(fmt.Errorf("character '0x%04x' is prohibited", 0x0007)),
+		err:   ErrProhibited(fmt.Errorf("character '0x%04x' is prohibited", 0x0007)),
 	},
 	{
 		label: "bidi not ok",
 		in:    "\u0627\u0031",
 		out:   "",
-		err:   stringprep.ErrBiDi(fmt.Errorf("Invalid use of bidirectional characters")),
+		err:   ErrBiDi(fmt.Errorf("Invalid use of bidirectional characters")),
 	},
 }
 
 func TestSASLprep(t *testing.T) {
-	for _, c := range profileTests {
+	for _, c := range saslTests {
 		t.Run(c.label, func(t *testing.T) {
-			got, err := Prepare(c.in)
+			got, err := SASLprep.Prepare(c.in)
 			t.Logf("err is '%v'", err)
 			if c.err == nil {
 				if got != c.out {
