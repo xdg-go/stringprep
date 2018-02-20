@@ -22,6 +22,11 @@ var mapNonASCIISpaceToASCIISpace = Mapping{
 
 // SASLprep is a pre-defined stringprep profile for user names and passwords
 // as described in RFC-4013.
+//
+// Because the stringprep distinction between query and stored strings was
+// intended for compatibility across profile versions, but SASLprep was never
+// updated and is now deprecated, this profile only operates in stored
+// strings mode, prohibiting unassigned code points.
 var SASLprep Profile = saslprep
 
 var saslprep = Profile{
