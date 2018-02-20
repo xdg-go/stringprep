@@ -7,7 +7,6 @@ import (
 )
 
 func Example_customProfile() {
-
 	customProfile := stringprep.Profile{
 		Mappings: []stringprep.Mapping{
 			stringprep.TableB1,
@@ -31,7 +30,6 @@ func Example_customProfile() {
 }
 
 func Example_sASLprep() {
-
 	prepped, err := stringprep.SASLprep.Prepare("TrustNô1")
 	if err != nil {
 		panic("SASLprep failed")
