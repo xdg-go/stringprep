@@ -3,7 +3,7 @@ package stringprep_test
 import (
 	"fmt"
 
-	"github.com/xdg/stringprep"
+	"github.com/xdg-go/stringprep"
 )
 
 func Example_customProfile() {
