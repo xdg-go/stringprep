@@ -1,15 +1,14 @@
-[![GoDoc](https://godoc.org/github.com/xdg/stringprep?status.svg)](https://godoc.org/github.com/xdg/stringprep)
-[![Build Status](https://travis-ci.org/xdg/stringprep.svg?branch=master)](https://travis-ci.org/xdg/stringprep)
+[![GoDoc](https://godoc.org/github.com/xdg-go/stringprep?status.svg)](https://godoc.org/github.com/xdg-go/stringprep)
+[![Build Status](https://travis-ci.org/xdg-go/stringprep.svg?branch=master)](https://travis-ci.org/xdg-go/stringprep)
 
 # stringprep – Go implementation of RFC-3454 stringprep and RFC-4013 SASLprep
 
 ## Synopsis
 
-```
-    import "github.com/xdg/stringprep"
+```go
+import "github.com/xdg/stringprep"
 
-    prepped := stringprep.SASLprep.Prepare("TrustNô1")
-
+prepped := stringprep.SASLprep.Prepare("TrustNô1")
 ```
 
 ## Description
