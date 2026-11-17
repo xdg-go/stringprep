@@ -14,7 +14,7 @@ go test -run TestSASLprep ./...     # single test
 go vet ./...
 ```
 
-CI (`.github/workflows/test.yml`) tests Go 1.14–1.19 on Ubuntu. `go.mod` declares `go 1.11`; keep code compatible with old Go versions (no generics, no `any`, no newer stdlib APIs) unless the minimum version is deliberately raised.
+CI (`.github/workflows/test.yml`) tests on Ubuntu with the Go version from `go.mod` (1.11), plus `oldstable` and `stable`. Keep code compatible with Go 1.11 (no generics, no `any`, no newer stdlib APIs) unless the minimum version is deliberately raised.
 
 ## Architecture
 
