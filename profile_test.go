@@ -3,6 +3,7 @@ package stringprep
 import (
 	"reflect"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -20,6 +21,8 @@ func TestProfiles(t *testing.T) {
 		Prohibits: []Set{},
 		CheckBiDi: false,
 	}
+
+	p3 := Profile{Normalize: true}
 
 	profileTests := []struct {
 		label   string
@@ -83,6 +86,21 @@ func TestProfiles(t *testing.T) {
 			err:     nil,
 		},
 		{label: "p2: no nfkc", profile: p2, in: "ua\u030Aer", out: "ua\u030Aer", err: nil},
+		{
+			label:   "p2: no combining limit without nfkc",
+			profile: p2,
+			in:      "a" + strings.Repeat("\u0301", 31),
+			out:     "a" + strings.Repeat("\u0301", 31),
+			err:     nil,
+		},
+		{label: "p3: caller CGJ kept", profile: p3, in: "a\u034Fb", out: "a\u034Fb", err: nil},
+		{
+			label:   "p3: too many combining",
+			profile: p3,
+			in:      "a" + strings.Repeat("\u0301", 31),
+			out:     "",
+			err:     Error{Msg: errTooManyCombining, Rune: '\u034F'},
+		},
 	}
 
 	for _, c := range profileTests {

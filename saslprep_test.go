@@ -3,6 +3,7 @@ package stringprep
 import (
 	"reflect"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -30,6 +31,36 @@ func TestSASLprep(t *testing.T) {
 			in:    "\u0627\u0031",
 			out:   "",
 			err:   Error{Msg: errLastRune, Rune: '\u0031'},
+		},
+		{
+			label: "30 combining marks",
+			in:    "a" + strings.Repeat("\u0301", 30),
+			out:   "\u00E1" + strings.Repeat("\u0301", 29),
+			err:   nil,
+		},
+		{
+			label: "31 combining marks",
+			in:    "a" + strings.Repeat("\u0301", 31),
+			out:   "",
+			err:   Error{Msg: errTooManyCombining, Rune: '\u034F'},
+		},
+		{
+			label: "precomposed counts its marks",
+			in:    "\u00E1" + strings.Repeat("\u0301", 30),
+			out:   "",
+			err:   Error{Msg: errTooManyCombining, Rune: '\u034F'},
+		},
+		{
+			label: "base character resets count",
+			in:    "a" + strings.Repeat("\u0301", 30) + "b" + strings.Repeat("\u0301", 30),
+			out:   "\u00E1" + strings.Repeat("\u0301", 29) + "b" + strings.Repeat("\u0301", 30),
+			err:   nil,
+		},
+		{
+			label: "GH issue 7",
+			in:    strings.Repeat("\u0344", 9) + strings.Repeat("\u0345", 13),
+			out:   "",
+			err:   Error{Msg: errTooManyCombining, Rune: '\u034F'},
 		},
 	}
 
