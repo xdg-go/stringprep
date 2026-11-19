@@ -1,7 +1,7 @@
 # CHANGELOG
 
-<a name="unreleased"></a>
-## [Unreleased]
+<a name="v1.0.5"></a>
+## [v1.0.5] - 2026-11-18
 
 ### Bug Fixes
 
